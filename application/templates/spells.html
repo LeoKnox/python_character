@@ -16,6 +16,14 @@
                 <td>{{ data["title"] }}</td>
                 <td>{{ data["casting"] }}</td>
                 <td>{{ data["type"] }}</td>
+                <td>
+                    <form action="{{ url_for('selection') }}" method="POST">
+                        <input type="hidden" name="spellID" value="{{ data['spellID'] }}">
+                        <input type="hidden" name="title" value="{{ data['title'] }}">
+                        <input type="hidden" name="type" value="{{ data['type'] }}">
+                        <button>Select</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

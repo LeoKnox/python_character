@@ -1,5 +1,5 @@
 from application import app
-from flask import render_template
+from flask import render_template, request
 
 @app.route("/")
 @app.route("/index")
@@ -22,6 +22,13 @@ def spells():
         {"spellID":"1113","title":"Snow Ball","casting":3,"type":"ice"},
         {"spellID":"1114","title":"Summon Demon","casting":4,"type":"demon"}]
     return render_template("spells.html", spellData=spellData, spells="active")
+
+@app.route("/selection", methods=["Get", "POST"])
+def selection():
+    id = request.form.get('spellID')
+    title = request.form.get('title')
+    spell_type = request.form.get('type')
+    return render_template("selection.html", login="active", data={ "id":id, "title":title, "type":spell_type })
 
 @app.route("/login")
 def login():
