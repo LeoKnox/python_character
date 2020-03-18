@@ -27,7 +27,7 @@ def spells():
 def selection():
     id = request.form.get('spellID')
     title = request.form.get('title')
-    spell_type = request.form.get('type')
+    spell_type = request.form.get('type').capitalize()
     return render_template("selection.html", login="active", data={ "id":id, "title":title, "type":spell_type })
 
 @app.route("/login")
