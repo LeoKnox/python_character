@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Spell Book</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Casting</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in spellData %}
+            <tr>
+                <td>{{ data["title"] }}</td>
+                <td>{{ data["casting"] }}</td>
+                <td>{{ data["type"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
