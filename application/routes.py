@@ -1,4 +1,4 @@
-from application import app
+from application import app, db
 from flask import render_template, request
 
 @app.route("/")
@@ -11,9 +11,20 @@ def index():
 def create():
     return render_template("create.html", create="active")
 
+class Character(db.Document):
+    char_id         =   db.IntField( unique=True )
+    char_name       =   db.StringField( max_length=50 )
+    char_class      =   db.StringField( max_length=30 )
+    char_atk        =   db.IntField()
+    char_def        =   db.IntField()
+    char_hp         =   db.IntField()
+
 @app.route("/character")
 def character():
-    return render_template("character.html", character="active")
+    #Character(char_id=1, char_name="Eveehi", char_class="Paladin", char_atk=7, char_def=11, char_hp=23).save()
+    #Character(char_id=2, char_name="Ynzon", char_class="Rogue", char_atk=9, char_def=14, char_hp=15).save()
+    chars = Character.objects.all()
+    return render_template("character.html", chars=chars, character="active")
 
 @app.route("/spells")
 def spells():

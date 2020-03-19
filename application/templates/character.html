@@ -2,4 +2,13 @@
 
 {% block content %}
     <h1>Character Content</h1>
+    {% for char in chars %}
+    <dl>
+        <dt>Char ID: {{ char.char_id }}</dt>
+        <dd>Char Name: {{ char.char_name }}</dd>
+        <dd>Char Clas: {{ char.char_class }}</dd>
+    </dl>
+    {% else %}
+        <p>No characters</p>
+    {% endfor %}
 {% endblock %}
