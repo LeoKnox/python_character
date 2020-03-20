@@ -1,6 +1,7 @@
 from application import app, db
 from flask import render_template, request
 from application.models import Character, Spell, SpellBook
+from application.forms import LoginForm, CreateForm
 
 @app.route("/")
 @app.route("/index")
@@ -32,6 +33,7 @@ def selection():
     spell_type = request.form.get('type').capitalize()
     return render_template("selection.html", login="active", data={ "id":id, "title":title, "type":spell_type })
 
-@app.route("/login")
+@app.route("/login", methods=['GET','POST'])
 def login():
-    return render_template("login.html", login="active")
+    form = LoginForm()
+    return render_template("login.html", form=form, login="active")

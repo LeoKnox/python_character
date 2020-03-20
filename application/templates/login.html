@@ -2,4 +2,18 @@
 
 {% block content %}
     <h1>Login Content</h1>
+    <form name="login" action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.char_name.label }}<br>
+            {{ form.char_name() }}
+        </p>
+        <p>
+            {{ form.char_class.label }}<br>
+            {{ form.char_class() }}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
 {% endblock %}
