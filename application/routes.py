@@ -11,14 +11,6 @@ def index():
 def create():
     return render_template("create.html", create="active")
 
-class Character(db.Document):
-    char_id         =   db.IntField( unique=True )
-    char_name       =   db.StringField( max_length=50 )
-    char_class      =   db.StringField( max_length=30 )
-    char_atk        =   db.IntField()
-    char_def        =   db.IntField()
-    char_hp         =   db.IntField()
-
 @app.route("/character")
 def character():
     #Character(char_id=1, char_name="Eveehi", char_class="Paladin", char_atk=7, char_def=11, char_hp=23).save()
