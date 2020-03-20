@@ -14,8 +14,6 @@ def create():
 
 @app.route("/character")
 def character():
-    #Character(char_id=1, char_name="Eveehi", char_class="Paladin", char_atk=7, char_def=11, char_hp=23).save()
-    #Character(char_id=2, char_name="Ynzon", char_class="Rogue", char_atk=9, char_def=14, char_hp=15).save()
     chars = Character.objects.all()
     return render_template("character.html", chars=chars, character="active")
 
