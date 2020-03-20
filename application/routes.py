@@ -1,5 +1,6 @@
 from application import app, db
 from flask import render_template, request
+from application.models import Character, Spell, SpellBook
 
 @app.route("/")
 @app.route("/index")
