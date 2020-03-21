@@ -1,5 +1,5 @@
 from application import app, db
-from flask import render_template, request
+from flask import render_template, request, redirect, flash
 from application.models import Character, Spell, SpellBook
 from application.forms import LoginForm, CreateForm
 
@@ -36,4 +36,10 @@ def selection():
 @app.route("/login", methods=['GET','POST'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        if request.form.get("char_name") == "Aelien":
+            flash("You are logged in.")
+            return redirect("/index")
+        else:
+            flash("Error try again.")
     return render_template("login.html", form=form, login="active")
