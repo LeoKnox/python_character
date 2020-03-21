@@ -1,5 +1,5 @@
 from application import app, db
-from flask import render_template, request, redirect, flash
+from flask import render_template, request, redirect, flash, url_for
 from application.models import Character, Spell, SpellBook
 from application.forms import LoginForm, CreateForm
 
@@ -9,9 +9,24 @@ from application.forms import LoginForm, CreateForm
 def index():
     return render_template("index.html", home="active")
 
-@app.route("/create")
+@app.route("/create", methods=["GET", "POST"])
 def create():
-    return render_template("create.html", create="active")
+    form = CreateForm()
+    if form.validate_on_submit():
+        char_id     =   Character.objects.count()
+        char_id     +=1
+
+        char_name   =   form.char_name.data
+        char_class  =   form.char_class.data
+        char_atk    =   form.char_atk.data
+        char_def    =   form.char_def.data
+        char_hp     =   form.char_hp.data
+
+        char = Character(char_id=char_id, char_name=char_name, char_class=char_class, char_atk=char_atk, char_def=char_def, char_hp=char_hp)
+        char.save()
+        return redirect(url_for('index'))
+
+    return render_template("create.html", create="active", form=form)
 
 @app.route("/character")
 def character():

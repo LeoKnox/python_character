@@ -2,4 +2,45 @@
 
 {% block content %}
     <h1>Create Template</h1>
+        <form name="create" action="" method="post" nonvalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.char_name.label }}<br>
+                {{ form.char_name() }}
+                {% for error in form.char_name.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.char_class.label }}<br>
+                {{ form.char_class() }}
+                {% for error in form.char_class.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.char_atk.label }}<br>
+                {{ form.char_atk() }}
+                {% for error in form.char_atk.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.char_def.label }}<br>
+                {{ form.char_def() }}
+                {% for error in form.char_def.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.char_hp.label }}<br>
+                {{ form.char_hp() }}
+                {% for error in form.char_hp.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.submit() }}
+            </p>
+        </form>
 {% endblock %}
