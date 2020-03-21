@@ -37,7 +37,9 @@ def selection():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        if request.form.get("char_name") == "Aelien":
+        char_name = form.char_name.data
+        char = Character.objects(char_name=char_name).first()
+        if char and char_name == char.char_name:
             flash("You are logged in.")
             return redirect("/index")
         else:
