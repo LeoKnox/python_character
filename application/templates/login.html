@@ -7,10 +7,16 @@
         <p>
             {{ form.char_name.label }}<br>
             {{ form.char_name() }}
+            {% for error in form.char_name.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.char_class.label }}<br>
             {{ form.char_class() }}
+            {% for error in form.char_name.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.submit() }}
