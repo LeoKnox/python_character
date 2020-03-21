@@ -35,10 +35,12 @@ def character():
 
 @app.route("/spells")
 def spells():
-    spellData = [{"spellID":"1111","title":"Fireball","casting":8,"type":"fire"},
-        {"spellID":"1112","title":"Stunning Touch","casting":6,"type":"lightning"},
-        {"spellID":"1113","title":"Snow Ball","casting":3,"type":"ice"},
-        {"spellID":"1114","title":"Summon Demon","casting":4,"type":"demon"}]
+    #spellData = [{"spellID":"1111","title":"Fireball","casting":8,"type":"fire"},
+    #    {"spellID":"1112","title":"Stunning Touch","casting":6,"type":"lightning"},
+    #    {"spellID":"1113","title":"Snow Ball","casting":3,"type":"ice"},
+    #    {"spellID":"1114","title":"Summon Demon","casting":4,"type":"demon"}]
+    spellData = Spell.objects.all()
+    print("kfgggg" + spellData.title)
     return render_template("spells.html", spellData=spellData, spells="active")
 
 @app.route("/selection", methods=["Get", "POST"])

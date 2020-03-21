@@ -10,11 +10,11 @@ class Character(db.Document):
     char_hp         =   db.IntField()
 
 class Spell(db.Document):
-    spell_id    =   db.StringField(max_length=10, unique=True )
+    spellID     =   db.StringField(max_length=10, unique=True )
     title       =   db.StringField( max_length=30 )
     casting     =   db.IntField()
     spell_type  =   db.StringField( max_length=30 )
 
 class SpellBook(db.Document):
     char_id         =   db.IntField()
-    spell_id        =   db.StringField( max_length=10 )
+    spellID         =   db.StringField( max_length=10 )
