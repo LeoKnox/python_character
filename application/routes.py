@@ -87,8 +87,7 @@ def selection():
             }
         }
     ]))
-    print(spells)
-    return render_template("selection.html", login="active", spells="spells")
+    return render_template("selection.html", selection="active", spells=spells)
 
 @app.route("/login", methods=['GET','POST'])
 def login():

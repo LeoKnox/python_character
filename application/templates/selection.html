@@ -19,17 +19,9 @@
             <tbody>
                 {% for data in spells %}
                 <tr>
-                    <td>{{ data["title"] }}</td>
-                    <td>{{ data["casting"] }}</td>
-                    <td>{{ data["spell_type"] }}</td>
-                    <td>
-                        <form action="{{ url_for('selection') }}" method="POST">
-                            <input type="hidden" name="spellID" value="{{ spells['spellID'] }}">
-                            <input type="hidden" name="title" value="{{ data['title'] }}">
-                            <input type="hidden" name="spell_type" value="{{ data['spell_type'] }}">
-                            <button>Select</button>
-                        </form>
-                    </td>
+                    <td>{{ data["r2"]["title"] }}</td>
+                    <td>{{ data["r2"]["casting"] }}</td>
+                    <td>{{ data["r2"]["spell_type"] }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
