@@ -51,7 +51,43 @@ def selection():
         else:
             SpellBook(char_id=char_id, spellID=spellID)
             flash(f'{title} added to spellbook')
-    spells = None
+    spells = list( Character.objects.aggregate(*[
+        {
+            '$lookup': {
+                'from': 'spellbook', 
+                'localField': 'char_id', 
+                'foreignField': 'char_id', 
+                'as': 'r1'
+            }
+        }, {
+            '$unwind': {
+                'path': '$r1', 
+                'includeArrayIndex': 'r1_id', 
+                'preserveNullAndEmptyArrays': False
+            }
+        }, {
+            '$lookup': {
+                'from': 'spell', 
+                'localField': 'r1.spellID', 
+                'foreignField': 'spellID', 
+                'as': 'r2'
+            }
+        }, {
+            '$unwind': {
+                'path': '$r2', 
+                'preserveNullAndEmptyArrays': False
+            }
+        }, {
+            '$match': {
+                'char_id': char_id
+            }
+        }, {
+            '$sort': {
+                'spellID': 1
+            }
+        }
+    ]))
+    print(spells)
     return render_template("selection.html", login="active", spells="spells")
 
 @app.route("/login", methods=['GET','POST'])

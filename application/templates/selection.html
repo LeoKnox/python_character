@@ -24,7 +24,7 @@
                     <td>{{ data["spell_type"] }}</td>
                     <td>
                         <form action="{{ url_for('selection') }}" method="POST">
-                            <input type="hidden" name="spellID" value="{{ data['spellID'] }}">
+                            <input type="hidden" name="spellID" value="{{ spells['spellID'] }}">
                             <input type="hidden" name="title" value="{{ data['title'] }}">
                             <input type="hidden" name="spell_type" value="{{ data['spell_type'] }}">
                             <button>Select</button>
