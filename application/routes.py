@@ -35,21 +35,24 @@ def character():
 
 @app.route("/spells")
 def spells():
-    #spellData = [{"spellID":"1111","title":"Fireball","casting":8,"type":"fire"},
-    #    {"spellID":"1112","title":"Stunning Touch","casting":6,"type":"lightning"},
-    #    {"spellID":"1113","title":"Snow Ball","casting":3,"type":"ice"},
-    #    {"spellID":"1114","title":"Summon Demon","casting":4,"type":"demon"}]
     spellData = Spell.objects.all()
-    test = Spell.objects.all()
-    print(test[0].spell_type)
     return render_template("spells.html", spellData=spellData, spells="active")
 
 @app.route("/selection", methods=["Get", "POST"])
 def selection():
-    id = request.form.get('spellID')
+    spellID = request.form.get('spellID')
     title = request.form.get('title')
-    spell_type = request.form.get('type').capitalize()
-    return render_template("selection.html", login="active", data={ "id":id, "title":title, "type":spell_type })
+    char_id = 1
+
+    if spellID:
+        if SpellBook.objects(char_id=char_id,spellID=spellID):
+            flash(f'{title} already in book')
+            return redirect(url_for("spells"))
+        else:
+            SpellBook(char_id=char_id, spellID=spellID)
+            flash(f'{title} added to spellbook')
+    spells = None
+    return render_template("selection.html", login="active", spells="spells")
 
 @app.route("/login", methods=['GET','POST'])
 def login():

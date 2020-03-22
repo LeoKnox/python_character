@@ -3,8 +3,37 @@
 {% block content %}
     <main>
         <h1>Your Spells</h1>
-        <p>Spell ID: {{ data.id }}</p>
-        <p>Spell Title: {{ data.title }}</p>
-        <p>Spell Type: {{ data.type }}</p>
+
+        {% if not spells %} 
+        <h1>You have no spells</h1>
+
+        {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Casting</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in spells %}
+                <tr>
+                    <td>{{ data["title"] }}</td>
+                    <td>{{ data["casting"] }}</td>
+                    <td>{{ data["spell_type"] }}</td>
+                    <td>
+                        <form action="{{ url_for('selection') }}" method="POST">
+                            <input type="hidden" name="spellID" value="{{ data['spellID'] }}">
+                            <input type="hidden" name="title" value="{{ data['title'] }}">
+                            <input type="hidden" name="spell_type" value="{{ data['spell_type'] }}">
+                            <button>Select</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
     </main>
 {% endblock %}
