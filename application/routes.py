@@ -12,7 +12,7 @@ def index():
 @app.route("/create", methods=["GET", "POST"])
 def create():
     if session.get('charname'):
-        return redirect(url_for('login'))
+        return redirect(url_for('index'))
 
     form = CreateForm()
     if form.validate_on_submit():
@@ -43,7 +43,7 @@ def spells():
 
 @app.route("/selection", methods=["Get", "POST"])
 def selection():
-    if session.get('charname'):
+    if not session.get('charname'):
         return redirect(url_for('login'))
 
     spellID = request.form.get('spellID')
@@ -98,7 +98,7 @@ def selection():
 @app.route("/login", methods=['GET','POST'])
 def login():
     if session.get('charname'):
-        return redirect(url_for('login'))
+        return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
         char_name = form.char_name.data
