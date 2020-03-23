@@ -35,14 +35,14 @@
                 <form name="create" action="" method="post" nonvalidate>
                     {{ form.hidden_tag() }}
                     <td>
-                        {{ form.spell_id() }}
-                        {% for error in form.spell_id.errors %}
+                        {{ form.spellID() }}
+                        {% for error in form.spellID.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </td>
                     <td>
-                        {{ form.spell_name() }}
-                        {% for error in form.spell_name.errors %}
+                        {{ form.title() }}
+                        {% for error in form.title.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </td>

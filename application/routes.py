@@ -103,19 +103,15 @@ def scribe():
     spellData = Spell.objects.all()
 
     form = SpellForm()
-    #if form.validate_on_submit():
-        #char_id     =   Character.objects.count()
-        #char_id     +=1
+    if form.validate_on_submit():
+        spellID     =   form.spellID.data
+        title       =   form.title.data
+        casting     =   form.casting.data
+        spell_type  =   form.spell_type.data
 
-        #spell_name   =   form.spell_name.data
-        #char_class  =   form.char_class.data
-        #char_atk    =   form.char_atk.data
-        #char_def    =   form.char_def.data
-        #char_hp     =   form.char_hp.data
-
-        #char = Character(char_id=char_id, char_name=char_name, char_class=char_class, char_atk=char_atk, char_def=char_def, char_hp=char_hp)
-        #char.save()
-        #return redirect(url_for('index'))
+        spell = Spell(spellID=spellID, title=title, casting=casting, spell_type=spell_type)
+        spell.save()
+        return redirect(url_for('scribe'))
     
 
     return render_template("scribe.html", create="active", spellData=spellData, form=form, test=True)

@@ -9,8 +9,8 @@ class LoginForm(FlaskForm):
     submit      =   SubmitField("Login")
 
 class SpellForm(FlaskForm):
-    spell_id    =   StringField("Spell ID", validators=[DataRequired()])
-    spell_name  =   StringField("Spell Name", validators=[DataRequired()])
+    spellID     =   StringField("Spell ID", validators=[DataRequired()])
+    title       =   StringField("Spell Title", validators=[DataRequired()])
     casting     =   StringField("Casting", validators=[DataRequired()])
     spell_type  =   StringField("Spell Type", validators=[DataRequired()])
     submit      =   SubmitField("Add Spell")
