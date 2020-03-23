@@ -12,7 +12,7 @@ def index():
 @app.route("/create", methods=["GET", "POST"])
 def create():
     if session.get('charname'):
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
 
     form = CreateForm()
     if form.validate_on_submit():
@@ -43,9 +43,12 @@ def spells():
 
 @app.route("/selection", methods=["Get", "POST"])
 def selection():
+    if session.get('charname'):
+        return redirect(url_for('login'))
+
     spellID = request.form.get('spellID')
     title = request.form.get('title')
-    char_id = 1
+    char_id = session.get('char_id')
 
     if spellID:
         if SpellBook.objects(char_id=char_id,spellID=spellID):
@@ -95,7 +98,7 @@ def selection():
 @app.route("/login", methods=['GET','POST'])
 def login():
     if session.get('charname'):
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     form = LoginForm()
     if form.validate_on_submit():
         char_name = form.char_name.data
@@ -103,7 +106,14 @@ def login():
         if char and char_name == char.char_name:
             flash("You are logged in.")
             session['charname'] = char.char_name
+            session['char_id'] = char.char_id
             return redirect("/index")
         else:
             flash("Error try again.")
     return render_template("login.html", form=form, login="active")
+
+@app.route("/logout")
+def logout():
+    session['charname']=False
+    session['char_id']=False
+    return redirect(url_for('index'))
