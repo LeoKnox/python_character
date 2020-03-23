@@ -32,7 +32,36 @@
             {% endfor %}
             {% if test %}
             <tr>
-                <td>edit line</td>
+                <form name="create" action="" method="post" nonvalidate>
+                    {{ form.hidden_tag() }}
+                    <td>
+                        {{ form.spell_id() }}
+                        {% for error in form.spell_id.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.spell_name() }}
+                        {% for error in form.spell_name.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.casting() }}
+                        {% for error in form.casting.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.spell_type() }}
+                        {% for error in form.spell_type.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ form.submit() }}
+                    </td>
+                </form>
             </tr>
             {% endif %}
         </tbody>

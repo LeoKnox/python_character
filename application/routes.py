@@ -1,7 +1,7 @@
 from application import app, db
 from flask import render_template, request, redirect, flash, url_for, session
 from application.models import Character, Spell, SpellBook
-from application.forms import LoginForm, CreateForm
+from application.forms import LoginForm, CreateForm, SpellForm
 
 @app.route("/")
 @app.route("/index")
@@ -102,12 +102,12 @@ def scribe():
 
     spellData = Spell.objects.all()
 
-    #form = CreateForm()
+    form = SpellForm()
     #if form.validate_on_submit():
         #char_id     =   Character.objects.count()
         #char_id     +=1
 
-        #char_name   =   form.char_name.data
+        #spell_name   =   form.spell_name.data
         #char_class  =   form.char_class.data
         #char_atk    =   form.char_atk.data
         #char_def    =   form.char_def.data
@@ -118,7 +118,7 @@ def scribe():
         #return redirect(url_for('index'))
     
 
-    return render_template("scribe.html", create="active", spellData=spellData, test=True)
+    return render_template("scribe.html", create="active", spellData=spellData, form=form, test=True)
 
 @app.route("/login", methods=['GET','POST'])
 def login():

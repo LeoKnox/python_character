@@ -8,6 +8,13 @@ class LoginForm(FlaskForm):
     remember_me =   BooleanField("Remember Me")
     submit      =   SubmitField("Login")
 
+class SpellForm(FlaskForm):
+    spell_id    =   StringField("Spell ID", validators=[DataRequired()])
+    spell_name  =   StringField("Spell Name", validators=[DataRequired()])
+    casting     =   StringField("Casting", validators=[DataRequired()])
+    spell_type  =   StringField("Spell Type", validators=[DataRequired()])
+    submit      =   SubmitField("Add Spell")
+
 class CreateForm(FlaskForm):
     char_name   =   StringField("Character Name", validators=[DataRequired()])
     char_class  =   StringField("Class", validators=[DataRequired()])
