@@ -116,8 +116,9 @@ def scribe():
         #char = Character(char_id=char_id, char_name=char_name, char_class=char_class, char_atk=char_atk, char_def=char_def, char_hp=char_hp)
         #char.save()
         #return redirect(url_for('index'))
+    
 
-    return render_template("scribe.html", create="active", spellData=spellData)
+    return render_template("scribe.html", create="active", spellData=spellData, test=True)
 
 @app.route("/login", methods=['GET','POST'])
 def login():
