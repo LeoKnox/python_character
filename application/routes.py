@@ -1,5 +1,5 @@
 from application import app, db
-from flask import render_template, request, redirect, flash, url_for
+from flask import render_template, request, redirect, flash, url_for, session
 from application.models import Character, Spell, SpellBook
 from application.forms import LoginForm, CreateForm
 
@@ -11,6 +11,9 @@ def index():
 
 @app.route("/create", methods=["GET", "POST"])
 def create():
+    if session.get('charname'):
+        return redirect(url_for('index'))
+
     form = CreateForm()
     if form.validate_on_submit():
         char_id     =   Character.objects.count()
@@ -91,12 +94,15 @@ def selection():
 
 @app.route("/login", methods=['GET','POST'])
 def login():
+    if session.get('charname'):
+        return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
         char_name = form.char_name.data
         char = Character.objects(char_name=char_name).first()
         if char and char_name == char.char_name:
             flash("You are logged in.")
+            session['charname'] = char.char_name
             return redirect("/index")
         else:
             flash("Error try again.")
