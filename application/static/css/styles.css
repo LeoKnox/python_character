@@ -6,6 +6,10 @@ main {
     padding: 5px 10px;
 }
 
+.char {
+    font-size: 1.2em;
+}
+
 footer {
     background-color: darkgray;
     color: white;

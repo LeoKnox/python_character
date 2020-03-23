@@ -94,6 +94,30 @@ def selection():
         }
     ]))
     return render_template("selection.html", selection="active", spells=spells)
+    
+@app.route("/scribe", methods=['GET', 'POST'])
+def scribe():
+    if session.get('charname'):
+        return redirect(url_for('index'))
+
+    spellData = Spell.objects.all()
+
+    #form = CreateForm()
+    #if form.validate_on_submit():
+        #char_id     =   Character.objects.count()
+        #char_id     +=1
+
+        #char_name   =   form.char_name.data
+        #char_class  =   form.char_class.data
+        #char_atk    =   form.char_atk.data
+        #char_def    =   form.char_def.data
+        #char_hp     =   form.char_hp.data
+
+        #char = Character(char_id=char_id, char_name=char_name, char_class=char_class, char_atk=char_atk, char_def=char_def, char_hp=char_hp)
+        #char.save()
+        #return redirect(url_for('index'))
+
+    return render_template("scribe.html", create="active", spellData=spellData)
 
 @app.route("/login", methods=['GET','POST'])
 def login():

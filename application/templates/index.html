@@ -3,7 +3,7 @@
 {% block content %}
     <main>
         {% if session['charname'] %}
-            <h3>Welcome</h3>
+            <h3>Beginning of Adventure</h3>
         {% else %}
             <p>Login to character. <a href={{url_for('login') }}">Login</a></p>
         {% endif %}

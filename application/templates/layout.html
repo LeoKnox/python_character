@@ -12,6 +12,10 @@
 <body>
     {% include "includes/nav.html" %}
 
+    {% if session['charname'] %}
+    <span class='char'>Welcome {{ session['charname'] }}</span>
+    {% endif %}
+
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
