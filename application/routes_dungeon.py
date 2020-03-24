@@ -3,5 +3,5 @@ from flask import render_template, request, redirect, flash, url_for, session
 
 @app.route('/dungeon')
 def dungeon():
-    room = {"length":5, "width":5}
+    room = {"length":15, "width":15}
     return render_template("dungeon.html", room=room)
