@@ -20,7 +20,7 @@
                 <td>{{ data["casting"] }}</td>
                 <td>{{ data["spell_type"] }}</td>
                 <td>
-                    <form action="{{ url_for('scribe') }}" method="POST">
+                    <form action="{{ url_for('edit_spell') }}" method="POST">
                         <input type="hidden" name="spellID" value="{{ data['spellID'] }}">
                         <input type="hidden" name="title" value="{{ data['title'] }}">
                         <input type="hidden" name="casting" value="{{ data['casting'] }}">

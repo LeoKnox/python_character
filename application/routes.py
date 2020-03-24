@@ -112,9 +112,12 @@ def scribe():
         spell = Spell(spellID=spellID, title=title, casting=casting, spell_type=spell_type)
         spell.save()
         return redirect(url_for('scribe'))
-    
 
     return render_template("scribe.html", create="active", spellData=spellData, form=form, test=True)
+
+@app.route("/edit_spell", methods=['GET', 'POST'])
+def edit_spell():
+    return render_template("edit_spell.html")
 
 @app.route("/login", methods=['GET','POST'])
 def login():
