@@ -1,8 +1,12 @@
 .room {
     border: 3px slategray solid;
+    padding: 0px;
+    margin: 0px;
 }
 
 .room td {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
+    padding: 0px;
+    margin: 0px;
 }

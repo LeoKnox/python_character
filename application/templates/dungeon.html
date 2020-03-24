@@ -14,7 +14,7 @@
 {% for i in range (0, room.width) %}
     <tr>
     {% for i in range (0, room.length) %}
-    <td>#</td>
+    <td><img src="{{url_for('static', filename='images/floor.jpg')}}" /></td>
     {% endfor %}
     </tr>
 {% endfor %}
