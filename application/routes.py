@@ -1,4 +1,4 @@
-from application import app, db
+from application import app, db, routes_dungeon
 from flask import render_template, request, redirect, flash, url_for, session
 from application.models import Character, Spell, SpellBook
 from application.forms import LoginForm, CreateForm, SpellForm
