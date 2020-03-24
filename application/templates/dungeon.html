@@ -13,8 +13,12 @@
 <table class="room">
 {% for i in range (0, room.width) %}
     <tr>
-    {% for i in range (0, room.length) %}
+    {% for j in range (0, room.length) %}
+    {% if i == player.locx and j == player.locy %}
+    <td><img src="{{url_for('static', filename='images/player.jpg')}}" /></td>
+    {% else %}
     <td><img src="{{url_for('static', filename='images/floor.jpg')}}" /></td>
+    {% endif %}
     {% endfor %}
     </tr>
 {% endfor %}
