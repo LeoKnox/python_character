@@ -97,8 +97,8 @@ def selection():
     
 @app.route("/scribe", methods=['GET', 'POST'])
 def scribe():
-    if session.get('charname'):
-        return redirect(url_for('index'))
+    #if session.get('charname'):
+    #    return redirect(url_for('index'))
 
     spellData = Spell.objects.all()
 
@@ -117,7 +117,8 @@ def scribe():
 
 @app.route("/edit_spell", methods=['GET', 'POST'])
 def edit_spell():
-    return render_template("edit_spell.html")
+
+    return render_template("edit_spell.html", create_spell="active")
 
 @app.route("/login", methods=['GET','POST'])
 def login():
